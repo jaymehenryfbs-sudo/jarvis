@@ -1,18 +1,30 @@
-name: Forge_APK_Final_Fixed
+name: Forge_Manuelle_Stark
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: JDK 17
+      
+      - name: Installation des outils système
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip build-essential git python3-setuptools libffi-dev libssl-dev
+          pip3 install --user --upgrade buildozer
+
+      - name: Configuration de Java
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Buildozer
-        uses: kivy/buildozer-action@v1.2.2
+
+      - name: Forge de l'APK (Buildozer manuel)
+        run: |
+          export PATH=$PATH:$HOME/.local/bin
+          yes | buildozer android debug
+        
+      - name: Exportation de l'Artifact
+        uses: actions/upload-artifact@v4
         with:
-          # La commande magique pour autoriser l'exécution
-          command: buildozer --verbose android debug
-          buildozer_version: master
+          name: package
+          path: bin/*.apk
