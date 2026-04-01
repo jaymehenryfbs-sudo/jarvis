@@ -1,0 +1,14 @@
+{
+    "AA:BB:CC:DD:EE:FF": {
+        "piece": "Atelier",
+        "type": "RTSP"
+    },
+    "11:22:33:44:55:66": {
+        "piece": "Garage",
+        "type": "Smartphone"
+    },
+    "00:11:22:33:44:55": {
+        "piece": "Salon",
+        "type": "IP_Cam"
+    }
+}

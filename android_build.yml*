@@ -1,0 +1,15 @@
+# .github/workflows/android_build.yml
+name: JARVIS_Final_Forge
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          clean: true # Force le nettoyage pour éviter l'erreur 128
+      - name: Build with Buildozer
+        uses: ArtemSashko/buildozer-action@v1
+        with:
+          buildozer_version: master
+          command: buildozer android debug
