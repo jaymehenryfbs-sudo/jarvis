@@ -1,4 +1,4 @@
-name: Forge_APK_Kivy_Official
+name: Forge_APK_Final_Fixed
 on: [push]
 jobs:
   build:
@@ -13,9 +13,6 @@ jobs:
       - name: Build with Buildozer
         uses: kivy/buildozer-action@v1.2.2
         with:
-          command: buildozer android debug
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: package
-          path: bin/*.apk
+          # La commande magique pour autoriser l'exécution
+          command: buildozer --verbose android debug
+          buildozer_version: master
